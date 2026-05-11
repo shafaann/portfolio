@@ -100,25 +100,21 @@ export const processSteps = [
     step: "01",
     title: "Data Discovery",
     description: "Understanding the business problem, data sources, and key metrics that matter.",
-    icon: "🔍",
   },
   {
     step: "02",
     title: "Data Cleaning & Prep",
     description: "Transforming raw data into clean, structured datasets ready for analysis.",
-    icon: "🧹",
   },
   {
     step: "03",
     title: "Analysis & Modeling",
     description: "Applying statistical methods and ML models to extract meaningful insights.",
-    icon: "📊",
   },
   {
     step: "04",
     title: "Visualization & Delivery",
     description: "Creating compelling dashboards and reports that drive decision-making.",
-    icon: "🚀",
   },
 ];
 

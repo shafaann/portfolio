@@ -247,7 +247,6 @@ function ProcessSection() {
               {step.step}
             </span>
             <div className="relative z-10">
-              <span className="text-4xl mb-5 block">{step.icon}</span>
               <h3 className="text-lg font-display font-bold mb-3 group-hover:text-gradient transition-all" style={{ color: 'var(--text-primary)' }}>
                 {step.title}
               </h3>
