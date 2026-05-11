@@ -1,0 +1,3 @@
+cd C:\Users\HP\.gemini\antigravity\scratch\portfolio
+
+npm run dev
