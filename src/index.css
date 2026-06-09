@@ -2,58 +2,91 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   THEME VARIABLES — Editorial Book Style
+   THEME VARIABLES — Portfolio Book 2020 Style
+   Vibrant, colorful, warm aesthetic
    ═══════════════════════════════════════════ */
 :root {
-  /* Warm Book Paper light aesthetic (Default) */
-  --bg-primary: #FAF6EE;
-  --bg-surface: #FDFBF7;
-  --bg-elevated: #F5EFE1;
-  --bg-card: rgba(28, 28, 26, 0.02);
-  --bg-card-hover: rgba(28, 28, 26, 0.04);
-  --bg-glass: rgba(250, 246, 238, 0.92);
+  /* Clean slate light base with electric blue/cyan accents */
+  --bg-primary: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F1F5F9;
+  --bg-card: rgba(0, 0, 0, 0.02);
+  --bg-card-hover: rgba(0, 0, 0, 0.04);
+  --bg-glass: rgba(255, 255, 255, 0.9);
 
-  --text-primary: #1C1C1A;
-  --text-secondary: #5E5D5A;
-  --text-muted: #9A9894;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
 
-  --border-color: rgba(28, 28, 26, 0.09);
-  --border-hover: rgba(28, 28, 26, 0.18);
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-hover: rgba(15, 23, 42, 0.16);
 
-  --accent-cyan: #2B6B76;
-  --accent-violet: #7351A8;
-  --accent-emerald: #397A5C;
-  --accent-rose: #A3485E;
+  /* Vibrant portfolio palette — electric blue and tech cyan */
+  --accent-coral: #2563EB;
+  --accent-teal: #0EA5E9;
+  --accent-navy: #0F172A;
+  --accent-gold: #0D9488;
+  --accent-blush: #4F46E5;
+  --accent-sage: #059669;
+  --accent-lavender: #7C3AED;
 
-  --shadow-color: rgba(28, 28, 26, 0.05);
-  --scrollbar-track: #FAF6EE;
-  --selection-bg: rgba(43, 107, 118, 0.12);
+  /* Keep old names mapped for compatibility */
+  --accent-cyan: #0EA5E9;
+  --accent-violet: #7C3AED;
+  --accent-emerald: #059669;
+  --accent-rose: #2563EB;
+
+  /* Section bg colors */
+  --section-home: transparent;
+  --section-work: rgba(241, 245, 249, 0.4);
+  --section-services: transparent;
+  --section-skills: rgba(241, 245, 249, 0.4);
+  --section-about: transparent;
+  --section-contact: rgba(241, 245, 249, 0.4);
+
+  --shadow-color: rgba(15, 23, 42, 0.04);
+  --scrollbar-track: #F8FAFC;
+  --selection-bg: rgba(37, 99, 235, 0.1);
 }
 
 [data-theme="dark"] {
-  /* Deep Ebony Book Paper aesthetic */
-  --bg-primary: #121212;
-  --bg-surface: #181818;
-  --bg-elevated: #1F1F1F;
+  --bg-primary: #0B0F19;
+  --bg-surface: #111827;
+  --bg-elevated: #1F2937;
   --bg-card: rgba(255, 255, 255, 0.02);
-  --bg-card-hover: rgba(255, 255, 255, 0.04);
-  --bg-glass: rgba(18, 18, 18, 0.92);
+  --bg-card-hover: rgba(255, 255, 255, 0.05);
+  --bg-glass: rgba(11, 15, 25, 0.9);
 
-  --text-primary: #EAE8E4;
-  --text-secondary: #A3A19D;
-  --text-muted: #61605E;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
 
   --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.18);
+  --border-hover: rgba(255, 255, 255, 0.16);
 
-  --accent-cyan: #4EC5D6;
-  --accent-violet: #A78BFA;
-  --accent-emerald: #34D399;
-  --accent-rose: #FB7185;
+  --accent-coral: #00E5FF;
+  --accent-teal: #3B82F6;
+  --accent-navy: #F1F5F9;
+  --accent-gold: #00F5FF;
+  --accent-blush: #6366F1;
+  --accent-sage: #10B981;
+  --accent-lavender: #8B5CF6;
+
+  --accent-cyan: #3B82F6;
+  --accent-violet: #8B5CF6;
+  --accent-emerald: #10B981;
+  --accent-rose: #00E5FF;
+
+  --section-home: transparent;
+  --section-work: rgba(17, 24, 39, 0.4);
+  --section-services: transparent;
+  --section-skills: rgba(17, 24, 39, 0.4);
+  --section-about: transparent;
+  --section-contact: rgba(17, 24, 39, 0.4);
 
   --shadow-color: rgba(0, 0, 0, 0.4);
-  --scrollbar-track: #121212;
-  --selection-bg: rgba(78, 197, 214, 0.2);
+  --scrollbar-track: #0B0F19;
+  --selection-bg: rgba(0, 229, 255, 0.15);
 }
 
 @theme {
@@ -61,6 +94,12 @@
   --color-accent-violet: var(--accent-violet);
   --color-accent-emerald: var(--accent-emerald);
   --color-accent-rose: var(--accent-rose);
+  --color-accent-coral: var(--accent-coral);
+  --color-accent-teal: var(--accent-teal);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-blush: var(--accent-blush);
+  --color-accent-sage: var(--accent-sage);
+  --color-accent-lavender: var(--accent-lavender);
 
   --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Playfair Display', Georgia, serif;
@@ -76,26 +115,29 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 16px;
   }
 
   body {
     font-family: var(--font-sans);
+    font-size: 1rem;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
     cursor: none;
     transition: background-color 0.5s ease, color 0.5s ease;
+    line-height: 1.6;
   }
 
   a, button, input, textarea, select, [role="button"] {
     cursor: none;
   }
 
-  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
   ::-webkit-scrollbar-thumb {
-    background: var(--text-muted);
-    border-radius: 2px;
+    background: var(--accent-coral);
+    border-radius: 4px;
   }
 
   ::selection {
@@ -105,113 +147,35 @@
 }
 
 @layer utilities {
-  /* === Editorial Text Gradients === */
+  /* === Vibrant Text Gradients === */
   .text-gradient {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 60%, var(--accent-violet) 100%);
+    background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-teal) 50%, var(--accent-lavender) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
   .text-gradient-warm {
-    background: linear-gradient(135deg, var(--accent-rose) 0%, var(--accent-violet) 50%, var(--accent-cyan) 100%);
+    background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-gold) 50%, var(--accent-blush) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* === Editorial Grids & Layouts === */
-  .book-layout {
-    display: grid;
-    grid-template-cols: 1fr;
-    min-height: 100vh;
-  }
-
-  @media (min-width: 1024px) {
-    .book-layout {
-      grid-template-cols: 450px 1fr;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .book-layout {
-      grid-template-cols: 520px 1fr;
-    }
-  }
-
-  /* Left static page */
-  .book-left-pane {
-    position: relative;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  @media (min-width: 1024px) {
-    .book-left-pane {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      border-bottom: none;
-      border-right: 1px solid var(--border-color);
-    }
-  }
-
-  /* Book spine vertical crease */
-  .book-spine {
-    position: absolute;
-    right: -1px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(90deg, rgba(0,0,0,0.08), transparent 80%, rgba(255,255,255,0.05) 100%);
-    pointer-events: none;
-    z-index: 20;
-  }
-
   /* Clean glassmorphism */
   .bg-glass {
     background: var(--bg-glass);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
     transition: background 0.4s ease;
   }
 
   .bg-glass-heavy {
     background: var(--bg-glass);
-    backdrop-filter: blur(24px);
+    backdrop-filter: blur(28px);
     border: 1px solid var(--border-color);
     transition: background 0.4s ease;
   }
-
-  /* Print elements */
-  .book-print-mark {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-    opacity: 0.75;
-  }
-
-  .book-page-num {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 16px;
-    color: var(--text-secondary);
-  }
-
-  /* Decorative crosshair */
-  .print-crosshair {
-    position: relative;
-    width: 12px;
-    height: 12px;
-  }
-  .print-crosshair::before, .print-crosshair::after {
-    content: '';
-    position: absolute;
-    background: var(--border-color);
-  }
-  .print-crosshair::before { top: 5px; left: 0; width: 12px; height: 1px; }
-  .print-crosshair::after { left: 5px; top: 0; width: 1px; height: 12px; }
 
   /* Font styling */
   .font-display { font-family: var(--font-display); }
@@ -222,6 +186,12 @@
   .animate-float {
     animation: float 8s ease-in-out infinite;
   }
+
+  /* Page transition wrapper */
+  .page-transition-container {
+    perspective: 1200px;
+    overflow: hidden;
+  }
 }
 
 @keyframes float {
@@ -229,11 +199,11 @@
   50% { transform: translateY(-10px) rotate(0.5deg); }
 }
 
-/* Custom Cursor styling suited for fine prints/monographs */
+/* Custom Cursor styling */
 .cursor-dot {
-  width: 5px;
-  height: 5px;
-  background: var(--text-primary);
+  width: 6px;
+  height: 6px;
+  background: var(--accent-coral);
   border-radius: 50%;
   position: fixed;
   top: 0; left: 0;
@@ -243,27 +213,29 @@
 }
 
 .cursor-outline {
-  width: 24px;
-  height: 24px;
-  border: 1px solid var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--accent-coral);
   border-radius: 50%;
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9998;
   transition: width 0.3s, height 0.3s, border-color 0.3s;
+  opacity: 0.5;
 }
 
 .cursor-dot.hovering {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-cyan);
+  width: 10px;
+  height: 10px;
+  background: var(--accent-teal);
 }
 
 .cursor-outline.hovering {
-  width: 32px;
-  height: 32px;
-  border-color: var(--accent-cyan);
+  width: 36px;
+  height: 36px;
+  border-color: var(--accent-teal);
+  opacity: 0.8;
 }
 
 @media (max-width: 768px) {

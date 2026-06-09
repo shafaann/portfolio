@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { FaExternalLinkAlt, FaGithub, FaArrowRight } from 'react-icons/fa';
 import SectionWrapper, { SectionHeader } from '../components/SectionWrapper';
 import { projects } from '../data/portfolio';
@@ -7,47 +8,45 @@ import SpotlightCard from '../components/SpotlightCard';
 
 const colorMap = {
   cyan: {
-    gradient: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%)',
-    bg: 'rgba(6,182,212,0.08)',
-    border: 'rgba(6,182,212,0.25)',
-    text: 'var(--accent-cyan)',
-    glow: 'rgba(6,182,212,0.2)',
-    pill: 'rgba(6,182,212,0.15)',
+    gradient: 'linear-gradient(135deg, #2EC4B6 0%, #3b82f6 100%)',
+    bg: 'rgba(46,196,182,0.08)',
+    border: 'rgba(46,196,182,0.25)',
+    text: 'var(--accent-teal)',
+    glow: 'rgba(46,196,182,0.2)',
+    pill: 'rgba(46,196,182,0.12)',
   },
   emerald: {
-    gradient: 'linear-gradient(135deg, #10b981 0%, #0891b2 50%, #06b6d4 100%)',
-    bg: 'rgba(16,185,129,0.08)',
-    border: 'rgba(16,185,129,0.25)',
-    text: 'var(--accent-emerald)',
-    glow: 'rgba(16,185,129,0.2)',
-    pill: 'rgba(16,185,129,0.15)',
+    gradient: 'linear-gradient(135deg, #7FB285 0%, #2EC4B6 100%)',
+    bg: 'rgba(127,178,133,0.08)',
+    border: 'rgba(127,178,133,0.25)',
+    text: 'var(--accent-sage)',
+    glow: 'rgba(127,178,133,0.2)',
+    pill: 'rgba(127,178,133,0.12)',
   },
   violet: {
-    gradient: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #ec4899 100%)',
-    bg: 'rgba(139,92,246,0.08)',
-    border: 'rgba(139,92,246,0.25)',
-    text: 'var(--accent-violet)',
-    glow: 'rgba(139,92,246,0.2)',
-    pill: 'rgba(139,92,246,0.15)',
+    gradient: 'linear-gradient(135deg, #9B8EC4 0%, #E8734A 100%)',
+    bg: 'rgba(155,142,196,0.08)',
+    border: 'rgba(155,142,196,0.25)',
+    text: 'var(--accent-lavender)',
+    glow: 'rgba(155,142,196,0.2)',
+    pill: 'rgba(155,142,196,0.12)',
   },
 };
 
-/* ─── Animated project preview card ─── */
-function ProjectPreview({ color, title, index }) {
+function ProjectPreview({ color, index }) {
   const c = colorMap[color] || colorMap.cyan;
   return (
     <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden"
       style={{ background: 'var(--bg-elevated)', border: `1px solid ${c.border}` }}>
-      {/* Animated gradient blob */}
-      <div className="absolute inset-0" style={{ background: `${c.gradient}`, opacity: 0.12 }} />
+      <div className="absolute inset-0" style={{ background: c.gradient, opacity: 0.1 }} />
       <motion.div
-        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+        animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
         className="absolute top-1/4 left-1/4 w-48 h-48 rounded-full blur-3xl"
         style={{ background: c.glow }} />
       <motion.div
         animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.4, 0.2] }}
-        transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut', delay: 1 }}
+        transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut', delay: 1.5 }}
         className="absolute bottom-1/4 right-1/4 w-32 h-32 rounded-full blur-3xl"
         style={{ background: c.glow }} />
       {/* Fake UI lines */}
@@ -58,14 +57,12 @@ function ProjectPreview({ color, title, index }) {
       </div>
       {/* Top bar */}
       <div className="absolute top-0 left-0 right-0 h-9 flex items-center px-4 gap-2"
-        style={{ background: 'rgba(0,0,0,0.3)', borderBottom: `1px solid ${c.border}` }}>
+        style={{ background: 'rgba(0,0,0,0.25)', borderBottom: `1px solid ${c.border}` }}>
         <div className="w-2.5 h-2.5 rounded-full bg-red-400 opacity-60" />
         <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-60" />
         <div className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-60" />
-        <div className="flex-1 mx-3 h-4 rounded-md opacity-20"
-          style={{ background: c.text }} />
+        <div className="flex-1 mx-3 h-4 rounded-md opacity-20" style={{ background: c.text }} />
       </div>
-      {/* Project number watermark */}
       <div className="absolute inset-0 flex items-center justify-center">
         <span className="font-display font-black text-[100px] leading-none select-none"
           style={{ color: c.text, opacity: 0.04 }}>
@@ -76,7 +73,6 @@ function ProjectPreview({ color, title, index }) {
   );
 }
 
-/* ─── Single project row ─── */
 function ProjectRow({ project, index }) {
   const c = colorMap[project.color] || colorMap.cyan;
   const isReversed = index % 2 !== 0;
@@ -92,7 +88,7 @@ function ProjectRow({ project, index }) {
       transition={{ duration: 0.75, ease: [0.215, 0.61, 0.355, 1] }}
       className="group relative">
 
-      {/* Large faded number in background */}
+      {/* Faded background number */}
       <motion.div style={{ y }}
         className="absolute -top-8 font-display font-black select-none pointer-events-none hidden lg:block"
         style={{
@@ -109,25 +105,22 @@ function ProjectRow({ project, index }) {
       <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${isReversed ? 'lg:[direction:rtl]' : ''}`}>
         {/* Preview */}
         <div className={`relative ${isReversed ? 'lg:[direction:ltr]' : ''}`}>
-          <motion.div
-            whileHover={{ scale: 1.02, y: -8 }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}>
-            <ProjectPreview color={project.color} title={project.title} index={index} />
+          <motion.div whileHover={{ scale: 1.02, y: -8 }} transition={{ duration: 0.4 }}>
+            <ProjectPreview color={project.color} index={index} />
           </motion.div>
-          {/* Glow under preview */}
           <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-12 rounded-full blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-700"
             style={{ background: c.glow }} />
         </div>
 
         {/* Info */}
         <div className={`flex flex-col gap-6 ${isReversed ? 'lg:[direction:ltr]' : ''}`}>
-          {/* Tag + number */}
+          {/* Tag */}
           <div className="flex items-center gap-3">
-            <span className="px-3 py-1 text-[10px] font-mono tracking-[0.2em] uppercase rounded-full"
+            <span className="px-4 py-1.5 text-sm font-semibold rounded-full"
               style={{ background: c.pill, border: `1px solid ${c.border}`, color: c.text }}>
               {project.tag || 'Project'}
             </span>
-            <span className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>
+            <span className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
               {String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
             </span>
           </div>
@@ -139,27 +132,27 @@ function ProjectRow({ project, index }) {
           </h2>
 
           {/* Description */}
-          <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             {project.description}
           </p>
 
-          {/* Details grid */}
+          {/* Details */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-              <p className="text-[9px] font-mono tracking-[0.2em] uppercase mb-1.5" style={{ color: 'var(--text-muted)' }}>Role</p>
-              <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{project.details?.role}</p>
+            <div className="p-4 rounded-xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)' }}>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: 'var(--text-muted)' }}>Role</p>
+              <p className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>{project.details?.role}</p>
             </div>
-            <div className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-              <p className="text-[9px] font-mono tracking-[0.2em] uppercase mb-1.5" style={{ color: 'var(--text-muted)' }}>Duration</p>
-              <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{project.details?.duration}</p>
+            <div className="p-4 rounded-xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)' }}>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: 'var(--text-muted)' }}>Duration</p>
+              <p className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>{project.details?.duration}</p>
             </div>
           </div>
 
           {/* Outcome */}
           {project.details?.outcome && (
-            <div className="p-4 rounded-xl" style={{ background: c.bg, border: `1px solid ${c.border}` }}>
-              <p className="text-[9px] font-mono tracking-[0.2em] uppercase mb-1.5" style={{ color: c.text, opacity: 0.7 }}>Outcome</p>
-              <p className="text-sm leading-relaxed font-medium" style={{ color: c.text }}>{project.details.outcome}</p>
+            <div className="p-5 rounded-xl" style={{ background: c.bg, border: `1px solid ${c.border}` }}>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: c.text, opacity: 0.8 }}>Outcome</p>
+              <p className="text-base leading-relaxed font-medium" style={{ color: c.text }}>{project.details.outcome}</p>
             </div>
           )}
 
@@ -167,43 +160,51 @@ function ProjectRow({ project, index }) {
           <div className="flex flex-wrap gap-2">
             {project.techStack.map(tech => (
               <span key={tech}
-                className="px-3 py-1.5 text-xs rounded-full font-mono"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)' }}>
+                className="px-3 py-1.5 text-sm rounded-full font-medium"
+                style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)' }}>
                 {tech}
               </span>
             ))}
           </div>
 
-          {/* CTA links */}
+          {/* CTAs */}
           <div className="flex items-center gap-3 pt-2">
             {project.liveUrl && (
-              <motion.a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                whileHover={{ scale: 1.05, boxShadow: `0 0 24px ${c.glow}` }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2.5 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300"
-                style={{ background: c.gradient, color: '#fff' }}>
-                <FaExternalLinkAlt size={11} />
-                {project.title === 'DotedOn' ? 'View Prototype' :
-                  project.title === 'FoundryBot' ? 'View on GitHub' : 'Live Demo'}
-              </motion.a>
+              project.liveUrl.startsWith('/') ? (
+                <Link to={project.liveUrl}>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="flex items-center gap-2.5 px-6 py-3 rounded-full text-base font-semibold transition-all duration-300"
+                    style={{ background: c.gradient, color: '#fff' }}>
+                    <FaExternalLinkAlt size={13} /> Launch App
+                  </motion.button>
+                </Link>
+              ) : (
+                <motion.a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center gap-2.5 px-6 py-3 rounded-full text-base font-semibold transition-all duration-300"
+                  style={{ background: c.gradient, color: '#fff' }}>
+                  <FaExternalLinkAlt size={13} /> {project.title === 'DotedOn' ? 'View Prototype' : 'Live Demo'}
+                </motion.a>
+              )
             )}
-            {project.githubUrl && project.title !== 'FoundryBot' && (
+            {project.githubUrl && (
               <motion.a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2.5 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-muted)' }}>
-                <FaGithub size={14} /> Code
+                className="flex items-center gap-2.5 px-6 py-3 rounded-full text-base font-medium transition-all duration-300"
+                style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)' }}>
+                <FaGithub size={16} /> Code
               </motion.a>
             )}
           </div>
         </div>
       </div>
 
-      {/* Divider line */}
       {index < projects.length - 1 && (
-        <div className="mt-24 h-px"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)' }} />
+        <div className="mt-24 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--border-color), transparent)' }} />
       )}
     </motion.div>
   );
@@ -213,16 +214,12 @@ export default function Work() {
   return (
     <main className="pt-24">
       <SectionWrapper>
-        {/* Header */}
-        <div className="mb-24">
-          <SectionHeader
-            label="Portfolio"
-            title="My Work"
-            description="Selected projects that showcase data analytics, machine learning, and creative design."
-          />
-        </div>
+        <SectionHeader
+          label="Portfolio"
+          title="My Work"
+          description="Selected projects showcasing data analytics, machine learning, and creative design."
+        />
 
-        {/* Projects */}
         <div className="space-y-24">
           {projects.map((project, i) => (
             <ProjectRow key={project.id} project={project} index={i} />
@@ -234,27 +231,26 @@ export default function Work() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="flex justify-center mt-32">
           <SpotlightCard
-            className="text-center px-12 py-10 rounded-3xl max-w-lg w-full"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-            <p className="text-xs font-mono tracking-[0.25em] uppercase mb-3" style={{ color: 'var(--accent-cyan)' }}>
+            className="text-center px-12 py-12 rounded-3xl max-w-lg w-full"
+            style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-color)' }}>
+            <p className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--accent-coral)' }}>
               More Projects
             </p>
-            <h3 className="text-2xl font-display font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+            <h3 className="text-3xl font-display font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
               See everything on GitHub
             </h3>
-            <p className="text-sm mb-6" style={{ color: 'var(--text-muted)' }}>
+            <p className="text-base mb-8" style={{ color: 'var(--text-muted)' }}>
               More experiments, datasets, and open-source contributions
             </p>
             <motion.a href="https://github.com/shafaann" target="_blank" rel="noopener noreferrer"
-              whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(6,182,212,0.2)' }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-300"
-              style={{ background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-violet))', color: '#050505' }}>
-              <FaGithub size={15} /> Visit GitHub
-              <FaArrowRight size={11} />
+              className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-base font-semibold transition-all duration-300"
+              style={{ background: 'var(--accent-coral)', color: '#fff' }}>
+              <FaGithub size={18} /> Visit GitHub
+              <FaArrowRight size={14} />
             </motion.a>
           </SpotlightCard>
         </motion.div>
