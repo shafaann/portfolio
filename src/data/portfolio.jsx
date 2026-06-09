@@ -58,6 +58,8 @@ export const projects = [
     techStack: ["Python", "API Integration", "Maps API", "Weather API"],
     featured: true,
     color: "cyan",
+    tag: "App",
+    githubUrl: "https://github.com/shafaann",
     details: {
       role: "Full-Stack Developer",
       duration: "2 months",
@@ -72,6 +74,8 @@ export const projects = [
     techStack: ["Figma", "UI/UX Design", "Freelance"],
     featured: true,
     color: "emerald",
+    tag: "Design",
+    liveUrl: "https://www.figma.com/proto/080nXNlsfyiF2qRA0sUC7n/DotedOn?node-id=11-3&t=itFB8uvoMl6kZBNO-1",
     details: {
       role: "UI/UX Designer",
       duration: "3 weeks",
@@ -86,6 +90,9 @@ export const projects = [
     techStack: ["Python", "RAG", "LLM", "Vector DB", "Machine Learning"],
     featured: true,
     color: "violet",
+    tag: "AI/ML",
+    liveUrl: "https://github.com/shafaann/LLM-Project",
+    githubUrl: "https://github.com/shafaann/LLM-Project",
     details: {
       role: "ML Engineer",
       duration: "6 weeks",
