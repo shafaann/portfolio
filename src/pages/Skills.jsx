@@ -10,52 +10,83 @@ export default function Skills() {
   return (
     <main className="pt-28">
       <SectionWrapper>
-        <SectionHeader label="Expertise" title="Skills & Technologies" description="The tools and technologies I use to bring ideas to life." />
-        <div className="flex flex-wrap justify-center gap-2 mb-14">
-          {skillCategories.map(cat => (
-            <motion.button key={cat} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-              onClick={() => setActiveCategory(cat)}
-              className="magnetic-item px-6 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all"
-              style={activeCategory === cat ? {
-                background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-violet))', color: '#050505',
-                boxShadow: '0 4px 15px rgba(6,182,212,0.2)',
-              } : {
-                background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)',
-              }}>
-              {cat}
-            </motion.button>
-          ))}
+        {/* Header */}
+        <div className="mb-16">
+          <SectionHeader 
+            label="Monograph // Technical Index" 
+            title="Skills & Technologies" 
+            description="A curated index of frameworks, mathematical libraries, and visual tools." 
+          />
         </div>
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        {/* Categories Navigation */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {skillCategories.map(cat => {
+            const isActive = activeCategory === cat;
+            return (
+              <motion.button 
+                key={cat} 
+                whileHover={{ scale: 1.03 }} 
+                whileTap={{ scale: 0.97 }}
+                onClick={() => setActiveCategory(cat)}
+                className="px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 border"
+                style={isActive ? {
+                  background: 'var(--text-primary)',
+                  borderColor: 'var(--text-primary)',
+                  color: 'var(--bg-primary)',
+                  fontWeight: 700
+                } : {
+                  background: 'var(--bg-surface)',
+                  borderColor: 'var(--border-color)',
+                  color: 'var(--text-secondary)'
+                }}
+              >
+                [ {cat} ]
+              </motion.button>
+            );
+          })}
+        </div>
+
+        {/* Skills Index Grid */}
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filtered.map((skill, i) => (
-              <motion.div key={skill.name} layout initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: -20 }}
+              <motion.div 
+                key={skill.name} 
+                layout 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }} 
+                exit={{ opacity: 0, y: -10 }}
                 transition={{ delay: i * 0.04 }}
-                className="group relative p-6 rounded-2xl card-hover overflow-hidden"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: 'linear-gradient(135deg, rgba(6,182,212,0.05), transparent)' }} />
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className="w-13 h-13 rounded-xl flex items-center justify-center"
-                      style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-                      <skill.icon className="text-2xl" style={{ color: 'var(--text-secondary)' }} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-display font-bold" style={{ color: 'var(--text-primary)' }}>{skill.name}</h3>
-                      <p className="text-[10px] uppercase tracking-[0.15em] font-mono" style={{ color: 'var(--text-muted)' }}>{skill.category}</p>
-                    </div>
+                className="relative p-6 rounded-2xl border transition-all duration-300 hover:bg-elevated"
+                style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
+              >
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center border"
+                    style={{ background: 'var(--bg-elevated)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
+                    <skill.icon size={20} />
                   </div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`level-badge level-${skill.level.toLowerCase()}`}>{skill.level}</span>
-                    <span className="text-xs font-mono" style={{ color: 'var(--accent-cyan)' }}>{skill.proficiency}%</span>
+                  <div>
+                    <h3 className="text-base font-display font-bold" style={{ color: 'var(--text-primary)' }}>{skill.name}</h3>
+                    <p className="text-[9px] uppercase tracking-widest font-mono" style={{ color: 'var(--text-muted)' }}>{skill.category}</p>
                   </div>
-                  <div className="h-[3px] rounded-full overflow-hidden" style={{ background: 'var(--border-color)' }}>
-                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${skill.proficiency}%` }}
-                      viewport={{ once: true }} transition={{ delay: 0.3 + i * 0.04, duration: 1, ease: [0.4, 0, 0.2, 1] }}
-                      className="h-full rounded-full" style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }} />
-                  </div>
+                </div>
+
+                <div className="flex items-center justify-between mb-3 text-xs">
+                  <span className={`level-badge level-${skill.level.toLowerCase()}`}>{skill.level}</span>
+                  <span className="font-mono" style={{ color: 'var(--accent-cyan)' }}>{skill.proficiency}%</span>
+                </div>
+
+                {/* Simplified Progress bar */}
+                <div className="h-1 rounded-full overflow-hidden" style={{ background: 'var(--border-color)' }}>
+                  <motion.div 
+                    initial={{ width: 0 }} 
+                    whileInView={{ width: `${skill.proficiency}%` }}
+                    viewport={{ once: true }} 
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                    className="h-full rounded-full" 
+                    style={{ background: 'var(--accent-cyan)' }} 
+                  />
                 </div>
               </motion.div>
             ))}

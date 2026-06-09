@@ -21,51 +21,81 @@ export default function About() {
   return (
     <main className="pt-28">
       <SectionWrapper>
-        <SectionHeader label="Get to Know Me" title="About Me" />
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="max-w-5xl mx-auto mb-24">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
+        {/* Header */}
+        <div className="mb-16">
+          <SectionHeader label="Monograph // Biography" title="About Me" />
+        </div>
+
+        {/* Bio Spread */}
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="max-w-5xl mx-auto mb-28">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+            {/* Left page graphic */}
             <div className="md:col-span-2 flex justify-center">
-              <div className="relative group">
-                <motion.div whileHover={{ scale: 1.03 }} className="w-52 h-52 rounded-3xl flex items-center justify-center"
-                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-                  <span className="text-7xl font-display font-bold text-gradient">SM</span>
-                </motion.div>
-                <div className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"
-                  style={{ background: 'linear-gradient(135deg, rgba(6,182,212,0.2), rgba(139,92,246,0.2))' }} />
-                <div className="absolute -top-3 -right-3 w-6 h-6 rounded-full animate-float" style={{ background: 'rgba(6,182,212,0.2)' }} />
-                <div className="absolute -bottom-2 -left-2 w-4 h-4 rounded-full animate-float-delayed" style={{ background: 'rgba(139,92,246,0.15)' }} />
+              <div className="relative p-6 rounded-3xl border w-64 h-64 flex flex-col justify-between"
+                style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
+                <div className="flex justify-between items-start">
+                  <div className="print-crosshair" />
+                  <span className="text-[9px] font-mono tracking-widest text-muted">// PROFILE</span>
+                </div>
+                <div className="text-center my-auto">
+                  <span className="font-display font-black text-6xl italic text-gradient">SM</span>
+                </div>
+                <div className="flex justify-between items-end">
+                  <span className="text-[9px] font-mono tracking-widest text-muted">2020 // 2026</span>
+                  <div className="print-crosshair" />
+                </div>
               </div>
             </div>
-            <div className="md:col-span-3">
-              <h2 className="text-2xl md:text-3xl font-display font-bold mb-5" style={{ color: 'var(--text-primary)' }}>
-                Hi, I'm <span className="text-gradient">{personalInfo.name}</span> 👋
+
+            {/* Right page content */}
+            <div className="md:col-span-3 space-y-6">
+              <h2 className="text-3xl font-display font-bold" style={{ color: 'var(--text-primary)' }}>
+                Hi, I'm <span className="italic">{personalInfo.name}</span>
               </h2>
-              <p className="leading-relaxed text-lg mb-7" style={{ color: 'var(--text-secondary)' }}>{personalInfo.bio}</p>
-              <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 rounded-full text-sm font-mono" style={{ background: 'rgba(6,182,212,0.1)', border: '1px solid rgba(6,182,212,0.15)', color: 'var(--accent-cyan)' }}>📍 India</span>
-                <span className="px-4 py-2 rounded-full text-sm font-mono" style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.15)', color: 'var(--accent-emerald)' }}>🎓 IT Student</span>
-                <span className="px-4 py-2 rounded-full text-sm font-mono" style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.15)', color: 'var(--accent-violet)' }}>💼 Open to Work</span>
+              <p className="leading-relaxed text-base" style={{ color: 'var(--text-secondary)' }}>
+                {personalInfo.bio}
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {[
+                  { label: 'India', color: 'var(--accent-cyan)' },
+                  { label: 'IT Student', color: 'var(--accent-emerald)' },
+                  { label: 'Open to Work', color: 'var(--accent-violet)' }
+                ].map(tag => (
+                  <span key={tag.label} className="px-4 py-2 rounded-full text-xs font-mono border" 
+                    style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-color)', color: tag.color }}>
+                    [ {tag.label} ]
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         </motion.div>
 
-        <div className="mb-24">
-          <SectionHeader label="Journey" title="Milestones" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Milestones */}
+        <div className="mb-28">
+          <div className="mb-12">
+            <SectionHeader label="Chronicle" title="Milestones" />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {milestones.map((m, i) => (
-              <motion.div key={m.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="group p-7 rounded-2xl card-hover relative overflow-hidden"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-                <div className="relative z-10 flex items-start gap-5">
-                  <div className="w-12 h-12 rounded-2xl flex-shrink-0 flex items-center justify-center"
-                    style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-                    <m.icon className="text-xl" style={{ color: m.color }} />
+              <motion.div 
+                key={m.title} 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} 
+                transition={{ delay: i * 0.08 }}
+                className="p-8 rounded-2xl border flex flex-col justify-between"
+                style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
+              >
+                <div className="flex items-start gap-5">
+                  <div className="w-11 h-11 rounded-xl border flex-shrink-0 flex items-center justify-center"
+                    style={{ background: 'var(--bg-elevated)', borderColor: 'var(--border-color)', color: m.color }}>
+                    <m.icon size={16} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-display font-bold mb-2 group-hover:text-gradient transition-all" style={{ color: 'var(--text-primary)' }}>{m.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>{m.description}</p>
+                    <h3 className="text-lg font-display font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{m.title}</h3>
+                    <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{m.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -73,20 +103,26 @@ export default function About() {
           </div>
         </div>
 
-        <SectionHeader label="Passions" title="What Excites Me" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        {/* Interests */}
+        <div className="mb-12">
+          <SectionHeader label="Catalog // Passions" title="What Excites Me" />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {interests.map((interest, i) => (
-            <motion.div key={interest.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              className="group p-6 rounded-2xl text-center card-hover relative overflow-hidden"
-              style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
-                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
-                  <interest.icon className="text-2xl" style={{ color: interest.color }} />
-                </div>
-                <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{interest.name}</p>
+            <motion.div 
+              key={interest.name} 
+              initial={{ opacity: 0, scale: 0.95 }} 
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }} 
+              transition={{ delay: i * 0.08 }}
+              className="p-6 rounded-2xl border text-center"
+              style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
+            >
+              <div className="w-12 h-12 rounded-xl mx-auto flex items-center justify-center mb-4 border"
+                style={{ background: 'var(--bg-elevated)', borderColor: 'var(--border-color)', color: interest.color }}>
+                <interest.icon size={18} />
               </div>
+              <p className="text-xs font-mono tracking-wide" style={{ color: 'var(--text-secondary)' }}>{interest.name.toUpperCase()}</p>
             </motion.div>
           ))}
         </div>

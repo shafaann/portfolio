@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaArrowUp } from 'react-icons/fa';
-import { personalInfo, socialLinks } from '../data/portfolio';
+import { FaArrowUp, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { personalInfo } from '../data/portfolio';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,74 +17,66 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="relative overflow-hidden">
-      <div className="section-divider" />
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-8">
-        {/* CTA */}
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-center mb-20">
-          <h3 className="text-4xl md:text-6xl font-display font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
-            Let's work <span className="text-gradient">together</span>
-          </h3>
-          <p className="text-lg mb-8 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Have a project in mind? I'm always open to new opportunities.
-          </p>
-          <Link to="/contact">
-            <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}
-              className="px-10 py-4 rounded-full text-base font-semibold transition-all duration-300"
-              style={{ background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-violet))', color: '#050505' }}>
-              Get In Touch
-            </motion.button>
-          </Link>
-        </motion.div>
-
-        {/* Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-          <div>
-            <h4 className="text-2xl font-display font-bold text-gradient mb-4">
-              {personalInfo.name.split(' ')[0]}<span style={{ color: 'var(--text-muted)' }}>.</span>
+    <footer className="relative overflow-hidden mt-24" style={{ borderTop: '1px solid var(--border-color)', background: 'var(--bg-surface)' }}>
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        
+        {/* Editorial layout: 3 columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          {/* Col 1: Name & Brand imprint */}
+          <div className="space-y-4">
+            <h4 className="text-xl font-display font-bold">
+              shafan<span className="text-xs font-mono font-normal opacity-50 ml-1">/portfolio</span>
             </h4>
-            <p className="text-sm leading-relaxed max-w-sm" style={{ color: 'var(--text-muted)' }}>
-              {personalInfo.bio.substring(0, 130)}...
+            <p className="text-xs leading-relaxed max-w-sm" style={{ color: 'var(--text-muted)' }}>
+              A collection of digital artifacts, analytical reports, and interactive tools demonstrating the alignment of raw data with strategic decision frameworks.
             </p>
           </div>
+
+          {/* Col 2: Navigation index */}
           <div>
-            <h4 className="font-display font-semibold mb-5 text-sm tracking-wider uppercase" style={{ color: 'var(--text-primary)' }}>Navigation</h4>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+            <h5 className="text-[10px] font-mono tracking-widest uppercase mb-4" style={{ color: 'var(--text-secondary)' }}>// INDEX</h5>
+            <div className="grid grid-cols-2 gap-y-2.5">
               {footerLinks.map((link) => (
                 <Link key={link.name} to={link.path}
-                  className="text-sm transition-colors duration-300 flex items-center gap-2 group"
-                  style={{ color: 'var(--text-muted)' }}>
-                  <span className="w-0 h-[1px] group-hover:w-3 transition-all duration-300" style={{ backgroundColor: 'var(--accent-cyan)' }} />
-                  {link.name}
+                  className="text-xs font-mono hover:text-gradient transition-colors flex items-center gap-1.5"
+                  style={{ color: 'var(--text-secondary)' }}>
+                  <span>→</span> {link.name.toUpperCase()}
                 </Link>
               ))}
             </div>
           </div>
-          <div>
-            <h4 className="font-display font-semibold mb-5 text-sm tracking-wider uppercase" style={{ color: 'var(--text-primary)' }}>Connect</h4>
-            <div className="flex gap-3 mb-5">
-              {socialLinks.map((social) => (
-                <motion.a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  className="magnetic-item w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300"
-                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)' }}>
-                  <social.icon size={16} />
-                </motion.a>
-              ))}
+
+          {/* Col 3: Coordinates / Socials */}
+          <div className="space-y-4">
+            <h5 className="text-[10px] font-mono tracking-widest uppercase mb-4" style={{ color: 'var(--text-secondary)' }}>// COORDINATES</h5>
+            <div className="flex gap-3">
+              <a href="https://github.com/shafaann" target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg border flex items-center justify-center transition-colors hover:bg-elevated"
+                style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
+                <FaGithub size={14} />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg border flex items-center justify-center transition-colors hover:bg-elevated"
+                style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
+                <FaLinkedin size={14} />
+              </a>
             </div>
-            <p className="text-sm font-mono" style={{ color: 'var(--text-muted)' }}>{personalInfo.email}</p>
-            <p className="text-sm font-mono mt-1" style={{ color: 'var(--text-muted)' }}>{personalInfo.phone}</p>
+            <p className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>{personalInfo.email}</p>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid var(--border-color)' }}>
-          <p className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>© {currentYear} {personalInfo.name}. All rights reserved.</p>
-          <motion.button whileHover={{ scale: 1.1 }} onClick={scrollToTop}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)' }}>
-            <FaArrowUp size={12} />
+        {/* Bottom imprint line */}
+        <div className="pt-8 flex items-center justify-between gap-4" style={{ borderTop: '1px solid var(--border-color)' }}>
+          <p className="text-[10px] font-mono" style={{ color: 'var(--text-muted)' }}>
+            © {currentYear} SHAFAN MANAZ. TYPESET IN PLAYFAIR & OUTFIT.
+          </p>
+          <motion.button 
+            whileHover={{ scale: 1.05 }} 
+            onClick={scrollToTop}
+            className="w-9 h-9 rounded-lg border flex items-center justify-center transition-all duration-300 hover:bg-elevated"
+            style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
+            aria-label="Scroll to top">
+            <FaArrowUp size={10} />
           </motion.button>
         </div>
       </div>
