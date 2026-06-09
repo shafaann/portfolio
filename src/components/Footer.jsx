@@ -12,6 +12,7 @@ export default function Footer() {
     { name: 'Skills', path: '/skills' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
+    { name: 'Admin', path: '/admin' },
   ];
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
