@@ -14,6 +14,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 
+import FoundryBot from './pages/FoundryBot';
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -47,6 +49,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/admin" element={<PageTransition><Admin /></PageTransition>} />
+        <Route path="/foundrybot" element={<PageTransition><FoundryBot /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );

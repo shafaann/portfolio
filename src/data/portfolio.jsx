@@ -91,7 +91,7 @@ export const projects = [
     featured: true,
     color: "violet",
     tag: "AI/ML",
-    liveUrl: "https://github.com/shafaann/LLM-Project",
+    liveUrl: "/foundrybot",
     githubUrl: "https://github.com/shafaann/LLM-Project",
     details: {
       role: "ML Engineer",
