@@ -1,72 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   THEME VARIABLES — Portfolio Book 2020 Style
-   Vibrant, colorful, warm aesthetic
+   THEME VARIABLES — Dark Tech Aesthetic
+   Fits Spline 3D Scene
    ═══════════════════════════════════════════ */
 :root {
-  /* Clean slate light base with electric blue/cyan accents */
-  --bg-primary: #F8FAFC;
-  --bg-surface: #FFFFFF;
-  --bg-elevated: #F1F5F9;
-  --bg-card: rgba(0, 0, 0, 0.02);
-  --bg-card-hover: rgba(0, 0, 0, 0.04);
-  --bg-glass: rgba(255, 255, 255, 0.9);
-
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-
-  --border-color: rgba(15, 23, 42, 0.08);
-  --border-hover: rgba(15, 23, 42, 0.16);
-
-  /* Vibrant portfolio palette — electric blue and tech cyan */
-  --accent-coral: #2563EB;
-  --accent-teal: #0EA5E9;
-  --accent-navy: #0F172A;
-  --accent-gold: #0D9488;
-  --accent-blush: #4F46E5;
-  --accent-sage: #059669;
-  --accent-lavender: #7C3AED;
-
-  /* Keep old names mapped for compatibility */
-  --accent-cyan: #0EA5E9;
-  --accent-violet: #7C3AED;
-  --accent-emerald: #059669;
-  --accent-rose: #2563EB;
-
-  /* Section bg colors */
-  --section-home: transparent;
-  --section-work: rgba(241, 245, 249, 0.4);
-  --section-services: transparent;
-  --section-skills: rgba(241, 245, 249, 0.4);
-  --section-about: transparent;
-  --section-contact: rgba(241, 245, 249, 0.4);
-
-  --shadow-color: rgba(15, 23, 42, 0.04);
-  --scrollbar-track: #F8FAFC;
-  --selection-bg: rgba(37, 99, 235, 0.1);
-}
-
-[data-theme="dark"] {
-  --bg-primary: #0B0F19;
-  --bg-surface: #111827;
-  --bg-elevated: #1F2937;
+  --bg-primary: #050508;
+  --bg-surface: rgba(10, 15, 30, 0.4);
+  --bg-elevated: rgba(15, 25, 45, 0.5);
   --bg-card: rgba(255, 255, 255, 0.02);
   --bg-card-hover: rgba(255, 255, 255, 0.05);
-  --bg-glass: rgba(11, 15, 25, 0.9);
+  --bg-glass: rgba(5, 5, 12, 0.45);
 
-  --text-primary: #F1F5F9;
-  --text-secondary: #94A3B8;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
   --text-muted: #64748B;
 
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.16);
+  --border-color: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.15);
 
+  /* Electric cyan and blue palette */
   --accent-coral: #00E5FF;
   --accent-teal: #3B82F6;
-  --accent-navy: #F1F5F9;
+  --accent-navy: #F8FAFC;
   --accent-gold: #00F5FF;
   --accent-blush: #6366F1;
   --accent-sage: #10B981;
@@ -78,15 +35,55 @@
   --accent-rose: #00E5FF;
 
   --section-home: transparent;
-  --section-work: rgba(17, 24, 39, 0.4);
+  --section-work: transparent;
   --section-services: transparent;
-  --section-skills: rgba(17, 24, 39, 0.4);
+  --section-skills: transparent;
   --section-about: transparent;
-  --section-contact: rgba(17, 24, 39, 0.4);
+  --section-contact: transparent;
 
-  --shadow-color: rgba(0, 0, 0, 0.4);
-  --scrollbar-track: #0B0F19;
-  --selection-bg: rgba(0, 229, 255, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --scrollbar-track: #050508;
+  --selection-bg: rgba(0, 229, 255, 0.2);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #020204;
+  --bg-surface: rgba(5, 10, 20, 0.4);
+  --bg-elevated: rgba(10, 20, 35, 0.5);
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --bg-glass: rgba(2, 2, 6, 0.5);
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #64748B;
+
+  --border-color: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.15);
+
+  --accent-coral: #00E5FF;
+  --accent-teal: #3B82F6;
+  --accent-navy: #F8FAFC;
+  --accent-gold: #00F5FF;
+  --accent-blush: #6366F1;
+  --accent-sage: #10B981;
+  --accent-lavender: #8B5CF6;
+
+  --accent-cyan: #3B82F6;
+  --accent-violet: #8B5CF6;
+  --accent-emerald: #10B981;
+  --accent-rose: #00E5FF;
+
+  --section-home: transparent;
+  --section-work: transparent;
+  --section-services: transparent;
+  --section-skills: transparent;
+  --section-about: transparent;
+  --section-contact: transparent;
+
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --scrollbar-track: #020204;
+  --selection-bg: rgba(0, 229, 255, 0.2);
 }
 
 @theme {
@@ -101,9 +98,22 @@
   --color-accent-sage: var(--accent-sage);
   --color-accent-lavender: var(--accent-lavender);
 
-  --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  --animate-spotlight: spotlight 2s ease .75s 1 normal forwards;
+
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%,-40%) scale(1);
+    }
+  }
 }
 
 @layer base {
@@ -124,13 +134,12 @@
     background-color: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
-    cursor: none;
     transition: background-color 0.5s ease, color 0.5s ease;
     line-height: 1.6;
   }
 
   a, button, input, textarea, select, [role="button"] {
-    cursor: none;
+    cursor: pointer;
   }
 
   ::-webkit-scrollbar { width: 5px; }
@@ -246,3 +255,73 @@
     display: none !important;
   }
 }
+
+a, button, input, textarea, select, [role="button"], .interactive-card, nav, footer, .clickable, form, input, label {
+  pointer-events: auto;
+}
+
+/* ═══════════════════════════════════════════
+   ORBITAL TIMELINE & TIMELINE COMPONENTS
+   ═══════════════════════════════════════════ */
+
+/* Pulse animation utility override */
+@keyframes orbital-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+@keyframes orbital-ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-pulse {
+  animation: orbital-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-ping {
+  animation: orbital-ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.bg-gradient-orbital {
+  background: linear-gradient(to bottom right, #00E5FF, #3B82F6, #6366F1);
+}
+
+.shadow-orbital {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+.border-white\/10 { border-color: rgba(255, 255, 255, 0.1); }
+.border-white\/20 { border-color: rgba(255, 255, 255, 0.2); }
+.border-white\/30 { border-color: rgba(255, 255, 255, 0.3); }
+.border-white\/40 { border-color: rgba(255, 255, 255, 0.4); }
+
+.bg-black\/90 { background-color: rgba(5, 5, 10, 0.92); }
+.bg-white\/50 { background-color: rgba(255, 255, 255, 0.5); }
+.bg-white\/80 { background-color: rgba(255, 255, 255, 0.8); }
+
+.text-white\/70 { color: rgba(255, 255, 255, 0.7); }
+.text-white\/80 { color: rgba(255, 255, 255, 0.8); }
+
+/* Orbit Spin & Counter Spin for GPU Acceleration */
+.animate-orbit-spin {
+  animation: orbit-spin 100s linear infinite;
+}
+
+.animate-orbit-spin .orbit-node-content-wrapper {
+  animation: orbit-node-spin 100s linear infinite;
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(365deg); }
+}
+
+@keyframes orbit-node-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-365deg); }
+}
+
+

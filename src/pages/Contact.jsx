@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SectionWrapper, { SectionHeader } from '../components/SectionWrapper';
 import { personalInfo, faqs } from '../data/portfolio';
 import { FaEnvelope, FaLinkedin, FaGithub, FaChevronDown } from 'react-icons/fa';
+import { LiquidButton } from '../components/ui/liquid-glass-button';
 
 function ContactCards() {
   const [copied, setCopied] = useState(false);
@@ -103,16 +104,14 @@ function ContactForm() {
           className="w-full px-5 py-4 rounded-xl focus:outline-none transition-all duration-300 resize-none"
           style={inputStyle} />
 
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+        <LiquidButton
           type="submit"
           disabled={sending}
-          className="w-full py-4 rounded-full font-bold text-base transition-all duration-300 disabled:opacity-60"
-          style={{ background: 'var(--accent-coral)', color: '#fff' }}
+          className="w-full h-12"
+          size="xl"
         >
           {sending ? 'Sending…' : sent ? 'Message Sent ✓' : 'Send Message'}
-        </motion.button>
+        </LiquidButton>
       </form>
     </motion.div>
   );

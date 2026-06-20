@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight, FaGithub, FaLinkedin, FaExternalLinkAlt } from 'react-icons/fa';
 import { projects, personalInfo, stats } from '../data/portfolio';
 import TypeWriter from '../components/TypeWriter';
+import GitHubButton from '../components/ui/GitHubButton';
+import LinkedInButton from '../components/ui/LinkedInButton';
+import { LiquidButton } from '../components/ui/liquid-glass-button';
+import { CinematicHero } from '../components/ui/cinematic-landing-hero';
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -11,122 +15,7 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className="w-full min-h-screen">
-      {/* ─── HERO SECTION ─── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden"
-        style={{ background: 'var(--section-home)' }}>
-        
-        {/* Decorative shapes */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <motion.div
-            animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-20 right-[15%] w-32 h-32 rounded-full"
-            style={{ background: 'var(--accent-coral)', opacity: 0.15 }} />
-          <motion.div
-            animate={{ y: [0, 15, 0], rotate: [0, -3, 0] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-32 left-[10%] w-48 h-48 rounded-full"
-            style={{ background: 'var(--accent-teal)', opacity: 0.12 }} />
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute top-[40%] left-[60%] w-24 h-24 rounded-2xl rotate-45"
-            style={{ background: 'var(--accent-gold)', opacity: 0.1 }} />
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[60%] right-[8%] w-16 h-16 rounded-full"
-            style={{ background: 'var(--accent-lavender)', opacity: 0.15 }} />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center py-32">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}>
-            <span className="inline-block px-5 py-2 rounded-full text-sm font-medium mb-8"
-              style={{ background: 'rgba(0, 229, 255, 0.12)', color: 'var(--accent-coral)', border: '1px solid rgba(0, 229, 255, 0.2)' }}>
-              Data & Machine Learning
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-7xl sm:text-8xl lg:text-9xl font-display font-black leading-[0.9] tracking-tight mb-4">
-            SHAFAN
-          </motion.h1>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="text-7xl sm:text-8xl lg:text-9xl font-display font-black leading-[0.9] tracking-tight italic"
-            style={{ color: 'var(--accent-coral)' }}>
-            MANAZ
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="h-8 mt-8 mb-10 text-lg font-sans" style={{ color: 'var(--text-secondary)' }}>
-            <TypeWriter words={['Data Analyst', 'ML Engineer', 'RAG Architect', 'Problem Solver']} delay={2000} />
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="text-lg leading-relaxed max-w-xl mx-auto mb-12" style={{ color: 'var(--text-secondary)' }}>
-            Selected works, research briefs, and interactive applications demonstrating data-driven decision making and creative solutions.
-          </motion.p>
-
-          {/* Social Icons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="flex justify-center gap-4 mb-12">
-            <a href="https://github.com/shafaann" target="_blank" rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-              style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)', border: '1px solid var(--border-color)' }}>
-              <FaGithub size={20} />
-            </a>
-            <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-              style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)', border: '1px solid var(--border-color)' }}>
-              <FaLinkedin size={20} />
-            </a>
-          </motion.div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex justify-center gap-4">
-            <Link to="/work">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className="px-8 py-4 rounded-full text-base font-semibold transition-all duration-300"
-                style={{ background: 'var(--accent-coral)', color: '#fff' }}>
-                View My Work
-              </motion.button>
-            </Link>
-            <Link to="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className="px-8 py-4 rounded-full text-base font-semibold border transition-all duration-300"
-                style={{ borderColor: 'var(--border-hover)', color: 'var(--text-primary)', background: 'var(--bg-surface)' }}>
-                Get In Touch
-              </motion.button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      <CinematicHero />
 
       {/* ─── STATS STRIP ─── */}
       <section className="py-16 border-y" style={{ background: 'var(--bg-elevated)', borderColor: 'var(--border-color)', position: 'relative', zIndex: 5 }}>

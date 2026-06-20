@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import MagneticCursor from './components/MagneticCursor';
 import ParticleBackground from './components/ParticleBackground';
 import Home from './pages/Home';
 import Work from './pages/Work';
@@ -14,6 +13,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import FoundryBot from './pages/FoundryBot';
+import { SplineScene } from './components/ui/splite';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -110,10 +110,14 @@ function App() {
     <ThemeProvider>
       <Router>
         <ScrollToTop />
-        <MagneticCursor />
         <div className="relative min-h-screen overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)', transition: 'background-color 0.4s ease' }}>
-          <ParticleBackground />
-          <div className="relative" style={{ zIndex: 1 }}>
+          <div className="fixed inset-0 w-full h-full z-0 pointer-events-auto">
+            <SplineScene 
+              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+              className="w-full h-full"
+            />
+          </div>
+          <div className="relative pointer-events-none" style={{ zIndex: 1 }}>
             <Navbar />
             <AnimatedRoutes />
             <Footer />

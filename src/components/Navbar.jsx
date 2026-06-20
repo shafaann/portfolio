@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
+import { LiquidButton } from './ui/liquid-glass-button';
+
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Work', path: '/work' },
@@ -11,7 +13,6 @@ const navLinks = [
   { name: 'Skills', path: '/skills' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
-  { name: 'Admin', path: '/admin' },
 ];
 
 export default function Navbar() {
@@ -88,12 +89,10 @@ export default function Navbar() {
                 aria-label="Toggle theme">
                 {theme === 'dark' ? <FaSun size={14} /> : <FaMoon size={14} />}
               </button>
-              <Link to="/contact">
-                <button
-                  className="px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-105"
-                  style={{ background: 'var(--accent-coral)', color: '#fff' }}>
+              <Link to="/contact" className="pointer-events-auto">
+                <LiquidButton size="default">
                   Let's Talk
-                </button>
+                </LiquidButton>
               </Link>
             </div>
 
